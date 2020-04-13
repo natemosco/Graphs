@@ -22,7 +22,7 @@ class Graph:
         Add a directed edge to the graph.
         """
         # Check if they exist
-        if v1 in self.verticies and v2 in self.vertices:
+        if v1 in self.vertices and v2 in self.vertices:
             # Add the edge
             self.vertices[v1].add(v2)
         else:
@@ -32,7 +32,7 @@ class Graph:
         """
         Get all neighbors (edges) of a vertex.
         """
-        if vertex_id in self.vetices:
+        if vertex_id in self.vertices:
             return self.vertices[vertex_id]
         else:
             return None
