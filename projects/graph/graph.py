@@ -85,14 +85,24 @@ class Graph:
                     new_path.append(next_vertex)
                     my_stack.push(new_path)
 
-    def dft_recursive(self, starting_vertex):
+    def dft_recursive(self, starting_vertex, visited=None):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
 
         This should be done using recursion.
         """
-        pass  # TODO
+        if visited is None:
+            visited = set()
+
+        neighbors = self.get_neighbors(starting_vertex)
+        if starting_vertex in visited:
+            return
+        print(starting_vertex)
+        # print(starting_vertex, "visited", visited)
+        visited.add(starting_vertex)
+        for neighbor in neighbors:
+            self.dft_recursive(neighbor, visited)
 
     def bfs(self, starting_vertex, destination_vertex):
         """
@@ -100,7 +110,21 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        pass  # TODO
+        qq = Queue()
+        qq.enqueue(starting_vertex)
+
+        visited = set()
+        while qq.size() > 0:
+            path = qq.dequeue()
+            if path[-1] == destination_vertex:
+                return path
+            print(path[-1])
+            visited.add(path[-1])
+
+            for next_vertex in self.get_neighbors(path[-1]):
+                new_path = path.copy()  # can also do list(path)
+                new_path.append(next_vertex)
+                qq.enqueue(new_path)
 
     def dfs(self, starting_vertex, destination_vertex):
         """
@@ -108,7 +132,21 @@ class Graph:
         starting_vertex to destination_vertex in
         depth-first order.
         """
-        pass  # TODO
+        my_stack = Stack()
+        my_stack.push([starting_vertex])
+
+        visited = set()
+        while my_stack.size() > 0:
+            path = my_stack.pop()
+            if path[-1] == destination_vertex:
+                return path
+            print(path[-1])
+            visited.add(path[-1])
+
+            for next_vertex in self.get_neighbors(path[-1]):
+                new_path = list(path)
+                new_path.append(next_vertex)
+                my_stack.push(new_path)
 
     def dfs_recursive(self, starting_vertex, destination_vertex):
         """
