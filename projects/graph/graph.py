@@ -50,27 +50,40 @@ class Graph:
         # Create a set of traversed vertices
         visited = set()
         # While queue is not empty:
-        while qq.size
-        # dequeue/pop the first vertex
-        path = qq.dequeue()
-        # if not visited
-        if path[-1] not in visited:
-            # Do the thing your problem is requesting!!!
-            print(path[-1])
-            # add it to visited
-            visited.add(path[-1])
-            # enqueue all neighbors
-            for next_vert in self.get_neighbors([-1]):
-                new_path = list(path)
-                new_path.append(next_vert)
-                qq.enqueue(new_path)
+        while qq.size() > 0:
+            # dequeue/pop the first vertex
+            path = qq.dequeue()
+            # if not visited
+            if path[-1] not in visited:
+                # Do the thing your problem is requesting!!!
+                print(path[-1])
+                # add it to visited
+                visited.add(path[-1])
+                # enqueue all neighbors
+                for next_vert in self.get_neighbors(path[-1]):
+                    new_path = list(path)
+                    new_path.append(next_vert)
+                    qq.enqueue(new_path)
 
     def dft(self, starting_vertex):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        my_stack = Stack()
+        my_stack.push([starting_vertex])
+
+        visited = set()
+        while my_stack.size() > 0:
+            path = my_stack.pop()
+            if path[-1] not in visited:
+                print(path[-1])
+                visited.add(path[-1])
+
+                for next_vertex in self.get_neighbors(path[-1]):
+                    new_path = list(path)
+                    new_path.append(next_vertex)
+                    my_stack.push(new_path)
 
     def dft_recursive(self, starting_vertex):
         """
