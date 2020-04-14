@@ -9,13 +9,13 @@ class Graph:
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
 
     def __init__(self):
-        self.vertices = {}
+        self.vertices = {}  # This is our adjacency list
 
     def add_vertex(self, vertex_id):
         """
         Add a vertex to the graph.
         """
-        pass  # TODO
+        self.vertices[vertex_id] = set()
 
     def add_edge(self, v1, v2):
         """
@@ -36,13 +36,34 @@ class Graph:
             return self.vertices[vertex_id]
         else:
             return None
+            # might want to raise an exception here instead
+            # this may be a place to purposely crash the program.
 
     def bft(self, starting_vertex):
         """
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # Create a queue and enqueue starting vertex
+        qq = Queue()
+        qq.enqueue([starting_vertex])
+        # Create a set of traversed vertices
+        visited = set()
+        # While queue is not empty:
+        while qq.size
+        # dequeue/pop the first vertex
+        path = qq.dequeue()
+        # if not visited
+        if path[-1] not in visited:
+            # Do the thing your problem is requesting!!!
+            print(path[-1])
+            # add it to visited
+            visited.add(path[-1])
+            # enqueue all neighbors
+            for next_vert in self.get_neighbors([-1]):
+                new_path = list(path)
+                new_path.append(next_vert)
+                qq.enqueue(new_path)
 
     def dft(self, starting_vertex):
         """
